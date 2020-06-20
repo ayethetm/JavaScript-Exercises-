@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body 
+  {
+    background:#fcf6f5ff;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  .time
+  {
+    width: 350px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align:center;
+    letter-spacing: 7px;
+    background: #2bae66ff;
+    border-radius: 24px;
+  }
+.hms 
+  {
+    color: #f2aa4cff;
+    font-size: 48pt;
+    font-weight: 200;
+  }
+.ampm 
+  {
+    font-size: 15pt;
+    color: #301934;
+  }
+</style>
+</head>
+<body>
+<div class="time">
+  <span class="cover"></span>
+  <span class="hms"></span>
+  <span class="ampm"></span>
+</div>
+<script type="text/javascript">
+    function show() 
+        {
+           today = new Date();
+           h = today.getHours();
+           m = today.getMinutes();
+           s = today.getSeconds();
+           section = 'AM';
+           // Checks AM or PM.
+           if(h > 12)
+          {
+            h = h-12;
+            section = 'PM';
+          }
+          if(h == 0)
+          h =12;
+          if(m <= 9)
+          m = '0'+m;
+          if(s <= 9)
+          s = '0'+s;
+          document.getElementsByClassName('hms')[0].innerHTML =
+          h + ":" + m + ":" + s ;
+          document.getElementsByClassName('ampm')[0].innerHTML =
+          section;
+          t = setTimeout(show, 1000);
+}
+show();
+</script>
+</body>
+</html>

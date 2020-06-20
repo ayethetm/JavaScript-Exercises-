@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guessing Random Number</title>
+</head>
+<body>
+<script type="text/javascript">
+
+	// Generating the random number.	
+	randomNumber=Math.floor(Math.random()*20)+1;
+	userguess = '';
+	status = 'Enter a number between 1-20 and guess random number.Your try chance is 5 times.....';
+	numberOfGuesses=0;
+	tries = 5;
+	//Keeping the prompt to the user until the game ends.
+	while(tries > 0)
+	{
+		//Prompt a user to guess the number.
+		userguess =  prompt(status);
+		//If the user apply cancel button
+	if(userguess == null)
+	{
+		alert ('Quitting game!!');
+		break;
+	}
+	//If the user guess is the number
+	else if(isFinite(userguess) && userguess!='')
+	{
+		numberOfGuesses++;
+		if(userguess < randomNumber)
+		{
+			alert('Your guess is lower than random number..');
+		}
+		else if(userguess > randomNumber)
+		{
+			alert('Your guess is greater than random number...');
+		}
+		else
+		{
+			alert('Great job! You got it the random number >> '+ randomNumber+' in '+ numberOfGuesses+' guess time!!');
+			break;
+		}
+	}
+	tries=tries-1;
+}
+//If the chance of tries is out
+if(tries == 0)
+{
+	alert('You ran out of tries.The correct number is '+randomNumber+'.');
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

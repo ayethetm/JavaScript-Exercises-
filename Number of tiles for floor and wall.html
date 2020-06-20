@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hide function in JavaScript</title>
+	<style type="text/css">
+	body
+	{
+		margin:0;
+		padding:0;
+		font-family: sans-serif;
+		background: #34495e;
+	}
+	#box #section #floor, #box #section #wall
+	{
+		display: none;
+	}
+	#box
+	{
+		width: 300px;
+		padding: 10px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		background: #191919;
+		text-align:center;
+	}
+	#box h2
+	{
+		color: white;
+		font-weight: 300;
+		text-transform: uppercase;
+	}
+	#box #txt
+	{
+		font-size: 18px;
+		color: white;
+	}
+	#box input[type="text"]
+	{
+		border:0;
+		background: none;
+		display: block;
+		margin:10px auto;
+		text-align: center;
+		border:2px solid #3498db;
+		padding:14px 10px;
+		outline: none;
+		color: white;
+		border-radius: 24px;
+		transition: 0.2s;
+	}
+	#box input[type="text"]:focus
+	{
+		width: 180px;
+		border-color: #2ecc71;
+	}
+	#box input[type="button"]
+	{
+		border:0;
+		background: none;
+		display: block;
+		margin:20px auto;
+		text-align: center;
+		border:2px solid #2ecc71;
+		padding:14px 40px;
+		width: 140px;
+		outline: none;
+		color: white;
+		border-radius: 24px;
+		cursor: pointer;
+	}
+	#box input[type="button"]:hover
+	{
+		background: #2ecc71;
+	}
+</style>
+	<script type="text/javascript">
+
+//Functions are to choose radio button value for hide and show. 
+// This function is for floor display.
+		function show1()
+		{
+			document.getElementById('floor').style.display = 'block';
+			document.getElementById('wall').style.display = 'none';
+		}
+// This function is for wall display.
+		function show2()
+		{
+			document.getElementById('wall').style.display = 'block';
+			document.getElementById('floor').style.display = 'none';
+		}
+
+// Calculate the result for floor.
+		function calcFloor()
+		{
+			f1 = document.mainForm.textBox1.value;
+			f2 = document.mainForm.textBox2.value;
+			f3 = document.mainForm.t1Length.value ** 2;
+			rArea = f1 * f2;
+			result = rArea/f3; 
+			tile   = result * 0.05;
+			final   = tile + result;
+			alert("The area of room is "+ rArea + " sqft.");
+			alert("The area of one tile is "+ f3 +" sqft.");
+			alert('The number of tiles for floor is '+ 
+				Math.round(final)+ ' tiles');
+		}
+
+// Calculate the result for wall.
+//Tile's length and width values are with inches format.
+//So, the wall area is change to inches format.
+		function calcWall()
+		{
+			f1 = document.mainForm.textBox1.value * 12;//change to inches
+			f2 = document.mainForm.textBox2.value * 12;//change to inches
+			tw = document.mainForm.t2Width.value;//by inches
+			tl = document.mainForm.t2Height.value;//by inches 
+		
+			rArea = f1 * f2;//floor area by inches
+			tArea = tw * tl;//tile area (inches)
+			result = rArea/tArea; 
+			alert('The area of room is '+ rArea + ' inches.');
+			alert('The area of one tile is '+ tArea +' inches.');
+			alert('The number of tiles for wall is '+ Math.round(result) + 
+				' tiles');
+		}
+	</script>
+</head>
+<body>
+<!-- This is the main form. -->
+<form name="mainForm" id="box">
+			<h2>Number of tiles</h2><br>		
+			<input type="text" name="textBox1" placeholder="Room's Length">
+			<input type="text" name="textBox2" placeholder="Room's Width">
+
+			<p id="txt">Choose your type to decorate</p>
+			<input type="radio" name="choose" onclick="show1()">Floor
+			<input type="radio" name="choose" onclick="show2()">Wall
+<!-- This is the section of floor and wall display. -->
+			<div id="section">
+			<p id="floor">
+		    <input type="text" name="t1Length" placeholder="Tile's Length & Width">
+			<input type="button" name="" value="Calculate" 
+			onclick="calcFloor()">
+			</p>
+			<p id="wall">
+			<input type="text" name="t2Width" placeholder="Tile's Length ">
+			<input type="text" name="t2Height" placeholder="Tile's Width">
+			<input type="button" name="" value="Calculate" 
+			onclick="calcWall()">
+			</p>
+			</div>
+</form>
+</body>
+</html>
